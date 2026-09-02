@@ -7,8 +7,9 @@
 //var app = require('../app');
 import app from '../app.js';
 //var debug = require('debug')('server:server');
-import debugLibrary from 'debug';
-const debug = debugLibrary('server:server');
+// import debugLibrary from 'debug';
+// const debug = debugLibrary('server:server');
+import logger from '../configs/logger.js';
 //var http = require('http');
 import http from 'http';
 
@@ -69,11 +70,13 @@ function onError(error) {
   // handle specific listen errors with friendly messages
   switch (error.code) {
     case 'EACCES':
-      console.error(bind + ' requires elevated privileges');
+      // console.error(bind + ' requires elevated privileges');
+      logger.error(new Error(bind + ' requires elevated privileges'));
       process.exit(1);
       break;
     case 'EADDRINUSE':
-      console.error(bind + ' is already in use');
+      // console.error(bind + ' is already in use');
+      logger.error(new Error(bind + ' is already in use'));
       process.exit(1);
       break;
     default:
@@ -90,5 +93,6 @@ function onListening() {
   var bind = typeof addr === 'string'
     ? 'pipe ' + addr
     : 'port ' + addr.port;
-  debug('Listening on ' + bind);
+  // debug('Listening on ' + bind);
+  logger.info('Listening on ' + bind)
 }
