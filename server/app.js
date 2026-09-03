@@ -1,3 +1,4 @@
+import '@dotenvx/dotenvx/config';
 //var express = require('express');
 import express from 'express';
 //var path = require('path');
