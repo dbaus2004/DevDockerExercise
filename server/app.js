@@ -6,6 +6,8 @@ import path from 'path';
 import cookieParser from 'cookie-parser';
 //var logger = require('morgan');
 // import logger from 'morgan';
+import compression from 'compression';
+import helmet from 'helmet';
 import requestLogger from './middlewares/request-logger.js';
 
 //var indexRouter = require('./routes/index');
@@ -15,6 +17,8 @@ import usersRouter from './routes/users.js';
 
 var app = express();
 
+app.use(helmet());
+app.use(compression());
 // app.use(logger('dev'));
 app.use(requestLogger);
 app.use(express.json());
